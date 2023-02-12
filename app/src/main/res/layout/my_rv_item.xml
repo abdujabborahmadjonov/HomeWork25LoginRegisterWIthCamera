@@ -43,6 +43,7 @@
                     <ImageView
                         android:id="@+id/persson_image"
                         android:layout_width="70dp"
+                        android:scaleType="centerCrop"
                         android:layout_height="70dp"
                         android:src="@drawable/ic_baseline_account_circle_24"
                         app:layout_constraintBottom_toBottomOf="parent"

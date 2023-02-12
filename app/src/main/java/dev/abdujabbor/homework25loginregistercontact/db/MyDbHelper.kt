@@ -26,7 +26,7 @@ class MyDbHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
             "create table $TABLE_NAME($USER_ID integer not null primary key autoincrement not null,$USER_NAME text not null,$USER_PASSWORD text,$USER_NUMBER text not null,$USER_IMAGE text not null)"
         db?.execSQL(query)
         val querycha =
-            "create table $TABLE_NAME($USER_ID integer not null primary key autoincrement not null,$USER_NAME text not null,$USER_PASSWORD text)"
+            "create table $TABLE_USERCHA($USER_NAME text not null,$USER_PASSWORD text)"
         db?.execSQL(querycha)
     }
 
@@ -55,24 +55,6 @@ class MyDbHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
         return list
     }
 
-    fun getAllUsercha(): ArrayList<Usercha> {
-        val list = ArrayList<Usercha>()
-        val query = "select * from $TABLE_USERCHA"
-        val database = readableDatabase
-        val cursor = database.rawQuery(query, null)
-        if (cursor.moveToFirst()) {
-            do {
-                list.add(
-                    Usercha(
-                        cursor.getInt(0),
-                        cursor.getString(1),
-                        cursor.getString(2)
-                    )
-                )
-            } while (cursor.moveToNext())
-        }
-        return list
-    }
 
 
     fun addUser(user: User) {
@@ -87,13 +69,5 @@ class MyDbHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
         database.close()
     }
 
-    fun addUsercha(user: Usercha) {
-        val database = writableDatabase
-        val contentValues = ContentValues()
-        contentValues.put(USER_NAME, user.name)
-        contentValues.put(USER_PASSWORD, user.password)
-        database.insert(TABLE_USERCHA, null, contentValues)
-        database.close()
-    }
 
 }

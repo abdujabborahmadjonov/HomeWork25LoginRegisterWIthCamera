@@ -2,29 +2,16 @@ package dev.abdujabbor.homework25loginregistercontact.ui
 
 import android.app.Activity
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.BitmapFactory
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.FileProvider
-import dev.abdujabbor.homework25loginregistercontact.BuildConfig
-import dev.abdujabbor.homework25loginregistercontact.R
-import dev.abdujabbor.homework25loginregistercontact.databinding.ActivityMainBinding
+import androidx.appcompat.app.AppCompatActivity
 import dev.abdujabbor.homework25loginregistercontact.databinding.ActivityRegisterBinding
 import dev.abdujabbor.homework25loginregistercontact.db.MyDbHelper
 import dev.abdujabbor.homework25loginregistercontact.models.User
-import dev.abdujabbor.homework25loginregistercontact.models.Usercha
-import java.io.File
-import java.io.FileOutputStream
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.collections.ArrayList
 
 class RegisterActivity : AppCompatActivity() {
     lateinit var dbHelper: MyDbHelper
@@ -49,15 +36,10 @@ class RegisterActivity : AppCompatActivity() {
                 binding.number.text.toString(),
                 picturepath
             )
-            val usercha = Usercha(
-                binding.userName.text.toString(),
-                binding.password.text.toString(),
-            )
 
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
-            dbHelper.addUsercha(usercha)
             dbHelper.addUser(user)
         }
 
